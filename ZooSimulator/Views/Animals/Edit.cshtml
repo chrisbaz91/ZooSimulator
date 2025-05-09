@@ -1,0 +1,21 @@
+﻿@model ZooSimulator.ViewModels.EditModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<input id="Id" type="hidden" value="@Model.Id" />
+<input id="IndexUrl" type="hidden" value="@Url.Action("Index", "Animals")" />
+<input id="DeleteUrl" type="hidden" value="@Url.Action("Delete", "Animals")" />
+
+<form asp-controller="Animals" asp-action="Edit">
+    <partial name="_Fields.cshtml"></partial>
+</form>
+
+@section Scripts {
+	@{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

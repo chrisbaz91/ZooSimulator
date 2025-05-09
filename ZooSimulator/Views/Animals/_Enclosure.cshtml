@@ -1,0 +1,78 @@
+﻿@model ZooSimulator.ViewModels.EnclosureModel
+
+<br />
+
+@{
+	var animals = Model.Type.ToString() + "s";
+}
+
+<div class="card enclosure">
+	<div class="card-body">
+		<h2>@animals</h2>
+
+		<div class="row">
+			<div class="col-md-2">
+				<h1 class="emoji">&#@Model.Emoji;</h1>
+			</div>
+
+			<div class="col-md-8">
+				<div id="@animals-fed-alert" class="@(Model.FedThisHour ? "" : "hide-alert") alert alert-success text-center" role="alert">
+					@animals successfully fed!
+				</div>
+			</div>
+		</div>
+
+		<a href="@Url.Action("Create", "Animals", new { type = Model.Type })" class="btn btn-info">Adopt</a>
+		<input type="button" value="Feed" data-type-value="@Model.Type" data-type-id="@((int)Model.Type)" class="feed-button btn btn-success" @(Model.FedThisHour ? "disabled" : "") />
+
+		<br />
+		<br />
+
+		<table class="table">
+			<tr>
+				<th style="width:22em">
+					<label asp-for="@Model.Animals.FirstOrDefault().Id"></label>
+				</th>
+				<th style="width:10em">
+					<label asp-for="@Model.Animals.FirstOrDefault().Name"></label>
+				</th>
+				<th style="width:4em">
+					<label asp-for="@Model.Animals.FirstOrDefault().Age"></label>
+				</th>
+				<th style="width:6em">
+					<label asp-for="@Model.Animals.FirstOrDefault().Gender"></label>
+				</th>
+				<th style="width:7em">
+					<label asp-for="@Model.Animals.FirstOrDefault().Health"></label>
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var animal in Model.Animals)
+			{
+				<tr>
+					<td>
+						@animal.Id
+					</td>
+					<td>
+						@animal.Name
+					</td>
+					<td>
+						@animal.Age
+					</td>
+					<td>
+						@animal.Gender
+					</td>
+					<td>
+						@string.Format($"{animal.Health:f2}")%
+					</td>
+					<td>
+						<a href="@Url.Action("Details", "Animals", new { id = animal.Id })" class="btn btn-primary">Details</a>
+						<a href="@Url.Action("Edit", "Animals", new { id = animal.Id })" class="btn btn-primary">Edit</a>
+					</td>
+				</tr>
+			}
+
+		</table>
+    </div>
+</div>

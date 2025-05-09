@@ -1,0 +1,8 @@
+﻿@model ZooSimulator.ViewModels.ListModel
+
+@{
+    foreach (var enclosure in Model.Enclosures)
+    {
+        <partial name="_Enclosure" model="enclosure"></partial>
+    }
+}

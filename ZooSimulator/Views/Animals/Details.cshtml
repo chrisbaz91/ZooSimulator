@@ -1,0 +1,66 @@
+﻿@model ZooSimulator.ViewModels.DetailsModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Model.Type</h4>
+    <hr />
+    <div class="row">
+		<div class="col-md-6">
+			<strong>
+                <label class="form-label" asp-for="Id"></label>
+            </strong>
+            <span>
+                @Model.Id
+            </span>
+        </div>
+    </div>
+    <div class="row">
+		<div class="col-md-6">
+			<strong>
+                <label class="form-label" asp-for="Name"></label>
+            </strong>
+            <span>
+                @Model.Name
+            </span>
+        </div>
+    </div>
+    <div class="row">
+		<div class="col-md-6">
+			<strong>
+                <label class="form-label" asp-for="Age"></label>
+            </strong>
+            <span>
+                @Model.Age
+            </span>
+        </div>
+    </div>
+    <div class="row">
+		<div class="col-md-6">
+			<strong>
+                <label class="form-label" asp-for="Gender"></label>
+            </strong>
+            <span>
+                @Model.Gender
+            </span>
+        </div>
+    </div>
+    <div class="row">
+		<div class="col-md-6">
+			<strong>
+                <label class="form-label" asp-for="Health"></label>
+            </strong>
+            <span>
+                @string.Format($"{Model.Health:f2}")%
+            </span>
+        </div>
+    </div>
+</div>
+<p>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back</a>
+    <a href="@Url.Action("Edit", "Animals", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+</p>

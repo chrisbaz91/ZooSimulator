@@ -1,0 +1,17 @@
+﻿@model ZooSimulator.ViewModels.IndexModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<input id="IndexUrl" type="hidden" value="@Url.Action("Index", "Animals")" />
+<input id="FeedUrl" type="hidden" value="@Url.Action("Feed", "Animals")" />
+<input id="PassTimeUrl" type="hidden" value="@Url.Action("PassTime", "Animals")" />
+
+<h2>Enclosures</h2>
+
+@{
+    <div id="List">
+		<partial name="_List" model="Model.List"></partial>
+    </div>
+}
