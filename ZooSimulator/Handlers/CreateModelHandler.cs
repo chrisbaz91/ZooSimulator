@@ -8,12 +8,12 @@ namespace ZooSimulator.Handlers
     {
         public async Task<Guid> Handle(CreateModel model)
         {
-            var animal = CreateAnimal/*<Elephant>*/(model);
+            var animal = CreateAnimal(model);
 
             return await repo.AddAnimal(animal);
         }
 
-        private static Animal CreateAnimal/*<T>*/(CreateModel model)/* where T : Animal, new()*/
+        private static Animal CreateAnimal(CreateModel model)
         {
             return model.Type switch
             {
@@ -38,13 +38,6 @@ namespace ZooSimulator.Handlers
                                         model.Gender
                                         ),
             };
-
-            //return new T()
-            //{
-            //    Name = model.Name,
-            //    Age = model.Age,
-            //    Gender = model.Gender
-            //};
         }
     }
 }

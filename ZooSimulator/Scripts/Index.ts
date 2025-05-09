@@ -38,7 +38,6 @@ function feedButtonOnClick(e: Event) {
     const speciesTypeId = feedButton.dataset.typeId;
     const speciesTypeValue = feedButton.dataset.typeValue;
     const feedUrl = (document.getElementById("FeedUrl") as HTMLInputElement).value + "?Type=" + speciesTypeId;
-    //const fedAlert = document.getElementById(`${speciesTypeValue}s-fed-alert`) as HTMLDivElement;
 
     fetch(feedUrl, {
         method: "GET",
