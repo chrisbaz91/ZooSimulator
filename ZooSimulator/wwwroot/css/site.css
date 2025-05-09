@@ -103,5 +103,13 @@ body {
 }
 
 .emoji {
-    padding-left: 1em;
+    padding-left: 1em !important;
+}
+
+.column-padding {
+    padding-left: 0.4em !important;
+}
+
+.dead-animal td {
+    color: red !important;
 }

@@ -50,7 +50,7 @@
 
 			@foreach (var animal in Model.Animals)
 			{
-				<tr>
+				<tr class="@(animal.Health <= 0 ? "dead-animal" : "")">
 					<td>
 						@animal.Id
 					</td>
@@ -58,14 +58,25 @@
 						@animal.Name
 					</td>
 					<td>
-						@animal.Age
+						<span class="column-padding">@animal.Age</span>
 					</td>
 					<td>
 						@animal.Gender
 					</td>
-					<td>
-						@string.Format($"{animal.Health:f2}")%
-					</td>
+					@if (animal.Health > 0)
+					{
+						<td>
+							@string.Format($"{animal.Health:f2}%")
+						</td>
+					}
+					else
+					{
+						<td>
+							<h4 class="column-padding">
+								&#x2620;
+							</h4>
+						</td>
+					}
 					<td>
 						<a href="@Url.Action("Details", "Animals", new { id = animal.Id })" class="btn btn-primary">Details</a>
 						<a href="@Url.Action("Edit", "Animals", new { id = animal.Id })" class="btn btn-primary">Edit</a>
