@@ -39,6 +39,26 @@ namespace ZooSimulator.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        // GET: Animals/Create
+        public async Task<IActionResult> Build()
+        {
+            var handler = new BuildQueryHandler(enclosureRepo);
+            var model = await handler.Handle();
+            return View(model);
+        }
+
+        // POST: Animals/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Build(BuildModel model)
+        {
+            var handler = new BuildModelHandler(enclosureRepo);
+            await handler.Handle(model);
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Animals/Details/5
         public async Task<IActionResult> Details(DetailsQuery query)
         {

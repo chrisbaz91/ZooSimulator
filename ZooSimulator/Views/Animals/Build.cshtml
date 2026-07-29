@@ -1,0 +1,39 @@
+﻿@model ZooSimulator.ViewModels.BuildModel
+
+@{
+    ViewData["Title"] = "Build Enclosure";
+}
+
+<h2>Build Enclosure</h2>
+
+<form asp-controller="Animals" asp-action="Build">
+    <div class="card">
+
+        <div class="card-header">
+            <h4>@Model.Type</h4>
+        </div>
+
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label asp-for="Type" class="control-label"></label>
+                    <select asp-for="Type" class="form-select" asp-items="Model.List"></select>
+                </div>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            <input id="SubmitButton" type="submit" value="Save" class="btn btn-success" />
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
