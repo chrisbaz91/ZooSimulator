@@ -16,6 +16,15 @@ namespace ZooSimulator.DataAccess
             return await context.Enclosures.Where(x => x.Type == type).SingleOrDefaultAsync();
         }
 
+        public async Task<Guid> AddEnclosure(Enclosure enclosure)
+        {
+            await context.Enclosures.AddAsync(enclosure);
+
+            await context.SaveChangesAsync();
+
+            return enclosure.Id;
+        }
+
         public async Task<bool> UpdateFedThisHour(UpdateFedModel model)
         {
             var enclosure = await GetEnclosure(model.Type);

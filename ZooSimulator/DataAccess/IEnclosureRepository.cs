@@ -9,6 +9,8 @@ namespace ZooSimulator.DataAccess
 
         public Task<Enclosure> GetEnclosure(SpeciesType type);
 
+        public Task<Guid> AddEnclosure(Enclosure enclosure);
+
         public Task<bool> UpdateFedThisHour(UpdateFedModel model);
     }
 }
