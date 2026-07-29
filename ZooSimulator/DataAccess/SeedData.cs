@@ -6,6 +6,8 @@ namespace ZooSimulator.DataAccess
     {
         public static async Task SetInitialData()
         {
+            var zoo = new Zoo("Barrett Zoo", 12, 1000, 10);
+
             var elephants = new List<Elephant>()
             {
                 new("Chris", 10, Gender.Male),
@@ -38,6 +40,8 @@ namespace ZooSimulator.DataAccess
             var monkeyEnclosure = new Enclosure(SpeciesType.Monkey, "128018");
 
             using var context = new ZooContext();
+
+            await context.Zoos.AddAsync(zoo);
 
             await context.Animals.AddRangeAsync(elephants);
             await context.Animals.AddRangeAsync(giraffes);

@@ -13,5 +13,7 @@ namespace ZooSimulator.DataAccess
         public DbSet<Animal> Animals { get; set; }
 
         public DbSet<Enclosure> Enclosures { get; set; }
+
+        public DbSet<Zoo> Zoos { get; set; }
     }
 }

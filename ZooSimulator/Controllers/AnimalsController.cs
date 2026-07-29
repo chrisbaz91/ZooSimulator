@@ -9,7 +9,7 @@ using ZooSimulator.ViewModels;
 
 namespace ZooSimulator.Controllers
 {
-    public class AnimalsController(IAnimalRepository animalRepo, IEnclosureRepository enclosureRepo, IValidator<FieldsModel> validator) : Controller
+    public class AnimalsController(IZooRepository zooRepo, IAnimalRepository animalRepo, IEnclosureRepository enclosureRepo, IValidator<FieldsModel> validator) : Controller
     {
         public async Task<IActionResult> Index()
         {
@@ -34,7 +34,7 @@ namespace ZooSimulator.Controllers
 
         public async Task<IActionResult> PassTime()
         {
-            var handler = new PassTimeQueryHandler(animalRepo, enclosureRepo);
+            var handler = new PassTimeQueryHandler(zooRepo, animalRepo, enclosureRepo);
             await handler.Handle();
             return RedirectToAction(nameof(List));
         }

@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ZooContext>();
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 builder.Services.AddScoped<IEnclosureRepository, EnclosureRepository>();
+builder.Services.AddScoped<IZooRepository, ZooRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<FieldsModelValidator>();
 
 // Seed test data into in-memory database

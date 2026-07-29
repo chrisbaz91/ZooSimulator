@@ -3,10 +3,11 @@ using ZooSimulator.ViewModels;
 
 namespace ZooSimulator.Handlers
 {
-    public class PassTimeQueryHandler(IAnimalRepository animalRepo, IEnclosureRepository enclosureRepo)
+    public class PassTimeQueryHandler(IZooRepository zooRepo, IAnimalRepository animalRepo, IEnclosureRepository enclosureRepo)
     {
-        public async Task<bool> Handle()
+        public async Task<int> Handle()
         {
+            var zoo = await zooRepo.GetZoo();
             var enclosures = await enclosureRepo.GetEnclosures();
             var animals = await animalRepo.GetAnimals();
 
@@ -40,7 +41,9 @@ namespace ZooSimulator.Handlers
                 }
             }
 
-            return true;
+            await zooRepo.UpdateCurrentHour();
+
+            return zoo.CurrentHour;
         }
     }
 }
