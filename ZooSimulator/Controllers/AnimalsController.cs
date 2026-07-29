@@ -11,6 +11,13 @@ namespace ZooSimulator.Controllers
 {
     public class AnimalsController(IZooRepository zooRepo, IAnimalRepository animalRepo, IEnclosureRepository enclosureRepo, IValidator<FieldsModel> validator) : Controller
     {
+        public async Task<IActionResult> Layout()
+        {
+            var handler = new LayoutQueryHandler(zooRepo);
+            var model = await handler.Handle();
+            return PartialView("_LayoutPartial", model);
+        }
+
         public async Task<IActionResult> Index()
         {
             var handler = new IndexQueryHandler(enclosureRepo, animalRepo);
