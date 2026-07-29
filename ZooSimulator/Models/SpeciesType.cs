@@ -4,6 +4,9 @@ namespace ZooSimulator.Models
     {
         Elephant,
         Giraffe,
-        Monkey
+        Monkey,
+        Rhino,
+        Tiger,
+        Lion
     }
 }
